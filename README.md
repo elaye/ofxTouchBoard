@@ -1,23 +1,39 @@
-ofxAddonTemplate
-================
+ofxTouchBoard
+=============
 
-OpenFrameworks addon template for easier development of structurally correct addons.
+*This is a template of a README file for your addon. Fill in the relevant sections, and it should already give users a pretty good overview over your awesome addon!*
+We chose the [Markdown format](http://daringfireball.net/projects/markdown/syntax) since it can present good formatting where available (e.g. on Github) while still staying human-readable with a plain text editor.
+Don't forget, before announcing your addon to the world, you should replace `README.md` with this file and remove `README_AUTHOR.md`.
 
-This template aids you as an addon author in creating an addon in a "proper" way. Doing this enables the openFrameworks community to easily use your addon, and having addons adhere to an established structure makes it easier for the openFrameworks developers to create features around contributed addons, like the addons index at ofxaddons.com.
+Introduction
+------------
+Describe what your addon is about
 
-Download
---------
-The template contains all you need to start developing your addon. Download the template using the Download button on the right side of the github page. Unzip, rename and copy it to your addons folder.
-**PLEASE DON'T FORK** the addon template repo if you plan on creating your own addon, this will lead to confusion on the Github inheritance/forking graph, and you will unnecessarily have this repository's history in your own git repo.
+License
+-------
+State which license you offer your addon under. openFrameworks is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License), and you might consider using this for your repository. By default, `license.md` contains a copy of the MIT license to which you can add your name and the year.
 
-Further Steps
--------------
-`readme_author.md` contains instructions and explanations for you.
-`readme_deploy.md` is filled with a template for an informative README file you might want to use with your addon.
+Installation
+------------
+Any steps necessary to install your addon. Optimally, this means just dropping the folder into the `openFrameworks/addons/` folder.
 
-Before announcing your addon to the world, you should remove this file (`readme.md`) and the author instructions, and rename `readme_deploy.md` to `README.md`.
-Also, if you have special instructions which people should see when submitting a pull request or open an issue in your addon repository, add a `CONTRIBUTING.md` file at the root of your repository. For more details, see https://github.com/blog/1184-contributing-guidelines
+Dependencies
+------------
+What other addons are needed to properly work with this one?
 
-This template reflects the help text found at http://ofxaddons.com/howto, and will be updated from time to time by the OF developers.
+Compatibility
+------------
+Which versions of OF does this addon work with?
 
-Thanks for listening, and happy coding!
+Known issues
+------------
+Any specific (and long-living) issues/limitations you want to mention? For bugs, etc. you should use the issue tracker of your addon's repository
+
+Version history
+------------
+It make sense to include a version history here (newest releases first), describing new features and changes to the addon. Use [git tags](http://learn.github.com/p/tagging.html) to mark release points in your repo, too!
+
+### Version 0.1 (Date):
+Describe relevant changes etc.
+
+
