@@ -4,3 +4,4 @@
 #myAddon
 #ofxXmlSettings
 #ofxOpenCv
+ofxTouchBoard
