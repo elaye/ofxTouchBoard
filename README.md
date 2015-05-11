@@ -27,14 +27,11 @@ This addon works with oF 0.8.4 on Linux and Mac OS X.
 
 <!-- Known issues
 ------------
-Any specific (and long-living) issues/limitations you want to mention? For bugs, etc. you should use the issue tracker of your addon's repository
+Any specific (and long-living) issues/limitations you want to mention? For bugs, etc. you should use the issue tracker of your addon's repository -->
 
- --><!-- Version history
+<!-- Version history
 ------------
 It make sense to include a version history here (newest releases first), describing new features and changes to the addon. Use [git tags](http://learn.github.com/p/tagging.html) to mark release points in your repo, too!
 
 ### Version 0.1 (Date):
-Describe relevant changes etc.
-
-
- -->
+Describe relevant changes etc. -->
