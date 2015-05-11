@@ -8,12 +8,15 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	touchBoard.update();
-	touchBoard.logData();
+	// touchBoard.logData();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+	ofBackgroundGradient(ofColor(40,40,40), ofColor(0,0,0), OF_GRADIENT_CIRCULAR);	
+	ofSetColor(ofColor::black);
+	touchBoard.printData(0, 0);
+	touchBoard.draw(0, ofGetHeight());
 }
 
 //--------------------------------------------------------------

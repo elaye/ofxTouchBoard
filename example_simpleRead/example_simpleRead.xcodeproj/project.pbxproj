@@ -83,34 +83,11 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>D7F46D586994FB9D5C677147</key>
-			<dict>
-				<key>fileRef</key>
-				<string>8B00DDB4F466B87160AA5AE0</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>8B00DDB4F466B87160AA5AE0</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>main.cpp</string>
-				<key>path</key>
-				<string>../../../addons/ofxTouchBoard/src/main.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
 			<key>0B3C4032DFE2E7BEB809013B</key>
 			<dict>
 				<key>children</key>
 				<array>
 					<string>ABFF169D2D1485071912AEE6</string>
-					<string>8B00DDB4F466B87160AA5AE0</string>
 					<string>71DC62934E222CDB2A449133</string>
 					<string>AB6DEC765D47FB93E90CE252</string>
 					<string>EBEB5E6F8C7880FD87D0AD5F</string>
@@ -148,43 +125,6 @@
 				<string>defs.h</string>
 				<key>path</key>
 				<string>../../../addons/ofxTouchBoard/src/defs.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>34AA9DC7562BB1D80105BBD4</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>Disk.h</string>
-				<key>path</key>
-				<string>src/Disk.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>3E3D6B0EF709F0C70ACFACE0</key>
-			<dict>
-				<key>fileRef</key>
-				<string>C1E62CFFE54C5A892BB1EC24</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>C1E62CFFE54C5A892BB1EC24</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>Disk.cpp</string>
-				<key>path</key>
-				<string>src/Disk.cpp</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
@@ -726,8 +666,6 @@
 				<array>
 					<string>E4B69E200A3A1BDC003C02F2</string>
 					<string>E4B69E210A3A1BDC003C02F2</string>
-					<string>3E3D6B0EF709F0C70ACFACE0</string>
-					<string>D7F46D586994FB9D5C677147</string>
 					<string>AC512086945CB579AF85E702</string>
 					<string>69100F0D01D55C58A7591070</string>
 				</array>
@@ -1032,8 +970,6 @@
 					<string>E4B69E1D0A3A1BDC003C02F2</string>
 					<string>E4B69E1E0A3A1BDC003C02F2</string>
 					<string>E4B69E1F0A3A1BDC003C02F2</string>
-					<string>C1E62CFFE54C5A892BB1EC24</string>
-					<string>34AA9DC7562BB1D80105BBD4</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
