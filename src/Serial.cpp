@@ -12,6 +12,7 @@ void Serial::setup(){
 	cin >> deviceNb;
 	int baudRate = 57600;
 	serial.setup(deviceNb, baudRate);
+	// serial.setup(0, baudRate);
 }
 
 // void Serial::threadedFunction(){

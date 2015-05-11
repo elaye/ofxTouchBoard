@@ -2,23 +2,17 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	touchBoard.setup();
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	touchBoard.update();
-	// touchBoard.logData();
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofBackgroundGradient(ofColor(40,40,40), ofColor(0,0,0), OF_GRADIENT_CIRCULAR);	
-	ofSetColor(ofColor::black);
-	touchBoard.printData(0, 0);
-	touchBoard.draw(0, ofGetHeight());
 
-	ofLog() << touchBoard.getData()[0].fdat;
 }
 
 //--------------------------------------------------------------
@@ -32,7 +26,7 @@ void ofApp::keyReleased(int key){
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y){
+void ofApp::mouseMoved(int x, int y ){
 
 }
 

@@ -3,6 +3,10 @@
 void ofxTouchBoard::setup(){
 	serial.setup();
 	electrodes.resize(ELECTRODES_NB);
+
+	graphHeight = 200;
+	graphBarSpace = 10;
+	graphBarWidth = 20; 
 	jitter = 0.0;
 }
 
@@ -28,4 +32,65 @@ void ofxTouchBoard::update(){
 
 void ofxTouchBoard::logData(){
 	serial.printData();
+}
+
+void ofxTouchBoard::printData(float x, float y){
+	float charWidth = 10;
+	float charHeight = 10;
+	float xOffset = x;
+	float yOffset = y + charHeight;
+	float colWidth = 30;
+	float rowHeight = 20;
+	ofDrawBitmapString("E", x, yOffset);
+	xOffset += charWidth;
+	ofDrawBitmapString("TOUCH", xOffset, yOffset);
+	xOffset += 5 * charWidth;
+	ofDrawBitmapString("TTHS", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("RTHS", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("FDAT", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("BVAL", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+}
+
+void ofxTouchBoard::draw(float x, float y){
+	for(int i = 0; i < electrodes.size(); ++i){
+		Electrode e(electrodes[i]);
+
+		// ofSetColor(ofColor(147, 147, 147, 100));
+		// if(e.touch){
+			ofSetColor(ofColor(35, 255, 106, 100));
+		// }
+		// else{
+			// ofSetColor(ofColor(147, 147, 147, 100));
+		// }
+		// Draw filter data graph bar
+		drawGraphBar(x, y, i, e.fdat, graphBarWidth/2.0, -graphBarWidth/4.0);	
+		// Draw base value graph bar
+		ofSetColor(ofColor(35, 106, 255, 100));
+		drawGraphBar(x, y, i, e.bval, graphBarWidth/2.0, graphBarWidth/4.0);
+		// Draw touch threshold graph bar
+		// drawGraphBar(i, e.tths, graphBarWidth);
+
+		// Draw diff graph bar
+		// if(e.touch){
+		// 	ofSetColor(ofColor(35, 255, 106));
+		// }
+		// else{
+		// 	ofSetColor(ofColor(35, 106, 255));
+		// }
+		// drawGraphBar(i, e.diff, graphBarWidth);
+
+		// Draw release threshold graph bar
+		// ofSetColor(ofColor(147, 147, 147, 100));
+		// drawGraphBar(i, e.rths, graphBarWidth);
+	}
+}
+
+void ofxTouchBoard::drawGraphBar(float x0, float y0, int i, float val, float width, float xOffset){
+	float y = y0 - (val * graphHeight)/2.0;
+	float x = x0 + graphBarWidth + xOffset + (graphBarWidth + graphBarSpace) * i;
+	ofDrawPlane(x, y, width, val * graphHeight);
 }
