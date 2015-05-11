@@ -24,4 +24,6 @@ class ofxTouchBoard {
 	
 	private:
 		void drawGraphBar(float x0, float y0, int i, float val, float width, float xOffset);
+		void printDataLine(float val, float x, float y);
+		void printDataLine(int val, float x, float y);
 };

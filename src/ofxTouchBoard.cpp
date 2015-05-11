@@ -31,7 +31,7 @@ void ofxTouchBoard::update(){
 }
 
 void ofxTouchBoard::logData(){
-	serial.printData();
+	serial.logData();
 }
 
 
@@ -100,25 +100,30 @@ void ofxTouchBoard::printData(float x, float y){
 
 	for(int i = 0; i < electrodes.size(); ++i){
 		xOffset = x;
-		ofDrawBitmapString(ofToString(i), xOffset, yOffset);
+		printDataLine(i, xOffset, yOffset);
 		xOffset += 2 * charWidth;
-		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].touch, 2)), xOffset, yOffset);
+		printDataLine(electrodes[i].touch, xOffset, yOffset);
 		xOffset += 5 * charWidth;
-		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].tths, 2)), xOffset, yOffset);
+		printDataLine(electrodes[i].tths, xOffset, yOffset);
 		xOffset += 4 * charWidth;
-		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].rths, 2)), xOffset, yOffset);
+		printDataLine(electrodes[i].rths, xOffset, yOffset);
 		xOffset += 4 * charWidth;
-		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].fdat, 2)), xOffset, yOffset);
+		printDataLine(electrodes[i].fdat, xOffset, yOffset);
 		xOffset += 4 * charWidth;
-		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].bval, 2)), xOffset, yOffset);
+		printDataLine(electrodes[i].bval, xOffset, yOffset);
 		xOffset += 4 * charWidth;
-		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].diff, 2)), xOffset, yOffset);
+		printDataLine(electrodes[i].diff, xOffset, yOffset);
 		yOffset += charHeight;
 	}
 }
 
+void ofxTouchBoard::printDataLine(float val, float x, float y){
+	ofDrawBitmapString(ofToString(ofxTB::trunc(val, 2)), x, y);
+}
 
-
+void ofxTouchBoard::printDataLine(int val, float x, float y){
+	ofDrawBitmapString(ofToString(val), x, y);
+}
 
 
 

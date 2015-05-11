@@ -131,7 +131,7 @@ void Serial::readLine(){
 // 	unlock();
 // }
 
-void Serial::printData(){
+void Serial::logData(){
 	// lock();
 	cout << left << setw(4) << "EX" 
 			<< left << setw(6) << "TOUCH" 

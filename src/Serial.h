@@ -21,7 +21,7 @@ class Serial {
 		void readData();
 		void readLine();
 		// void normalizeData();
-		void printData();
+		void logData();
 
 		vector<Electrode> getData();
 		vector<Electrode> getNormalizedData();
