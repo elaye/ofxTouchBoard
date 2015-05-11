@@ -14,11 +14,9 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofBackgroundGradient(ofColor(40,40,40), ofColor(0,0,0), OF_GRADIENT_CIRCULAR);	
-	ofSetColor(ofColor::black);
+	ofSetColor(ofColor::white);
 	touchBoard.printData(0, 0);
 	touchBoard.draw(0, ofGetHeight());
-
-	ofLog() << touchBoard.getData()[0].fdat;
 }
 
 //--------------------------------------------------------------

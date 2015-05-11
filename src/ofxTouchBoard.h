@@ -1,5 +1,6 @@
 #pragma once
 
+#include "util.h"
 #include "Serial.h"
 
 class ofxTouchBoard {

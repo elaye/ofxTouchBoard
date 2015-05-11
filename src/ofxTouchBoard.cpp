@@ -34,26 +34,7 @@ void ofxTouchBoard::logData(){
 	serial.printData();
 }
 
-void ofxTouchBoard::printData(float x, float y){
-	float charWidth = 10;
-	float charHeight = 10;
-	float xOffset = x;
-	float yOffset = y + charHeight;
-	float colWidth = 30;
-	float rowHeight = 20;
-	ofDrawBitmapString("E", x, yOffset);
-	xOffset += charWidth;
-	ofDrawBitmapString("TOUCH", xOffset, yOffset);
-	xOffset += 5 * charWidth;
-	ofDrawBitmapString("TTHS", xOffset, yOffset);
-	xOffset += 4 * charWidth;
-	ofDrawBitmapString("RTHS", xOffset, yOffset);
-	xOffset += 4 * charWidth;
-	ofDrawBitmapString("FDAT", xOffset, yOffset);
-	xOffset += 4 * charWidth;
-	ofDrawBitmapString("BVAL", xOffset, yOffset);
-	xOffset += 4 * charWidth;
-}
+
 
 void ofxTouchBoard::draw(float x, float y){
 	for(int i = 0; i < electrodes.size(); ++i){
@@ -94,3 +75,50 @@ void ofxTouchBoard::drawGraphBar(float x0, float y0, int i, float val, float wid
 	float x = x0 + graphBarWidth + xOffset + (graphBarWidth + graphBarSpace) * i;
 	ofDrawPlane(x, y, width, val * graphHeight);
 }
+
+void ofxTouchBoard::printData(float x, float y){
+	float charWidth = 11;
+	float charHeight = 15;
+	float xOffset = x;
+	float yOffset = y + charHeight;
+	float colWidth = 30;
+	float rowHeight = 20;
+	ofDrawBitmapString("E", x, yOffset);
+	xOffset += 2 * charWidth;
+	ofDrawBitmapString("TOUCH", xOffset, yOffset);
+	xOffset += 5 * charWidth;
+	ofDrawBitmapString("TTHS", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("RTHS", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("FDAT", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("BVAL", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("DIFF", xOffset, yOffset);
+	yOffset += charHeight;
+
+	for(int i = 0; i < electrodes.size(); ++i){
+		xOffset = x;
+		ofDrawBitmapString(ofToString(i), xOffset, yOffset);
+		xOffset += 2 * charWidth;
+		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].touch, 2)), xOffset, yOffset);
+		xOffset += 5 * charWidth;
+		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].tths, 2)), xOffset, yOffset);
+		xOffset += 4 * charWidth;
+		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].rths, 2)), xOffset, yOffset);
+		xOffset += 4 * charWidth;
+		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].fdat, 2)), xOffset, yOffset);
+		xOffset += 4 * charWidth;
+		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].bval, 2)), xOffset, yOffset);
+		xOffset += 4 * charWidth;
+		ofDrawBitmapString(ofToString(ofxTB::trunc(electrodes[i].diff, 2)), xOffset, yOffset);
+		yOffset += charHeight;
+	}
+}
+
+
+
+
+
+
