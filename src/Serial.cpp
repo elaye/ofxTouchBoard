@@ -7,20 +7,32 @@ void Serial::setup(){
 	// unlock();
 	// serial.setup("/dev/ttyACM0", 57600);
 	serial.listDevices();
-	int deviceNb;
+	
+	deviceNb = -1;
 	cout << "Please choose a device: ";
 	cin >> deviceNb;
-	int baudRate = 57600;
-	serial.setup(deviceNb, baudRate);
-	// serial.setup(0, baudRate);
+
+	baudRate = 57600;
+	bConnected = false;
+	connect();
 }
 
+void Serial::connect(){
+	serial.setup(deviceNb, baudRate);
+	if(!serial.isInitialized()){
+		ofLog() << "Connection to device " << deviceNb << " failed. Retrying in 1s.";
+		ofSleepMillis(1000);
+		connect();
+	}
+}
 // void Serial::threadedFunction(){
 // 	while(isThreadRunning()){
 // 		readData();
 // 		// normalizeData();
 // 	}
 // }
+
+
 
 void Serial::update(){
 	readData();
@@ -68,6 +80,11 @@ void Serial::readLine(){
 		if(serial.available() > 0){
 			ss << dataByte;
 			dataByte = serial.readByte();
+		}
+		else{
+			if(!serial.isInitialized()){
+				connect();
+			}
 		}
 	}
 	stringstream raw(ss.str());

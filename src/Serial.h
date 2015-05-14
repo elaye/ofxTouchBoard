@@ -10,9 +10,13 @@ class Serial {
 	ofSerial serial;
 	vector<Electrode> data;
 	vector<Electrode> normalizedData;
+	int deviceNb;
+	int baudRate;
+	bool bConnected;
 
 	public:
 		void setup();
+		void connect();
 		// void threadedFunction();
 		void update();
 		void flush(){ serial.flush(); serial.drain(); }

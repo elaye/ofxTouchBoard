@@ -117,6 +117,48 @@ void ofxTouchBoard::printData(float x, float y){
 	}
 }
 
+void ofxTouchBoard::printRawData(float x, float y){
+	vector<Electrode> raw(serial.getData());
+	float charWidth = 11;
+	float charHeight = 15;
+	float xOffset = x;
+	float yOffset = y + charHeight;
+	float colWidth = 30;
+	float rowHeight = 20;
+	ofDrawBitmapString("E", x, yOffset);
+	xOffset += 2 * charWidth;
+	ofDrawBitmapString("TOUCH", xOffset, yOffset);
+	xOffset += 5 * charWidth;
+	ofDrawBitmapString("TTHS", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("RTHS", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("FDAT", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("BVAL", xOffset, yOffset);
+	xOffset += 4 * charWidth;
+	ofDrawBitmapString("DIFF", xOffset, yOffset);
+	yOffset += charHeight;
+
+	for(int i = 0; i < raw.size(); ++i){
+		xOffset = x;
+		printDataLine(i, xOffset, yOffset);
+		xOffset += 2 * charWidth;
+		printDataLine(raw[i].touch, xOffset, yOffset);
+		xOffset += 5 * charWidth;
+		printDataLine(raw[i].tths, xOffset, yOffset);
+		xOffset += 4 * charWidth;
+		printDataLine(raw[i].rths, xOffset, yOffset);
+		xOffset += 4 * charWidth;
+		printDataLine(raw[i].fdat, xOffset, yOffset);
+		xOffset += 4 * charWidth;
+		printDataLine(raw[i].bval, xOffset, yOffset);
+		xOffset += 4 * charWidth;
+		printDataLine(raw[i].diff, xOffset, yOffset);
+		yOffset += charHeight;
+	}
+}
+
 void ofxTouchBoard::printDataLine(float val, float x, float y){
 	ofDrawBitmapString(ofToString(ofxTB::trunc(val, 2)), x, y);
 }

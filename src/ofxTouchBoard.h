@@ -16,12 +16,16 @@ class ofxTouchBoard {
 		void update();
 		void logData();
 		void printData(float x, float y);
+		void printRawData(float x, float y);
 		void draw(float x, float y);
 
 		const vector<Electrode>& getData(){
 			return electrodes;
 		}
 	
+		const vector<Electrode>& getRawData(){
+			return serial.getData();
+		}
 	private:
 		void drawGraphBar(float x0, float y0, int i, float val, float width, float xOffset);
 		void printDataLine(float val, float x, float y);
