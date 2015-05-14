@@ -56,13 +56,13 @@ void ofxTouchBoard::updateStatus(){
 	for(int i = 0; i < touchStatus.size(); ++i){
 		if(electrodes[i].diff > touchThresholds[i] && !touchStatus[i]){
 			touchStatus[i] = true;
-			ofLog() << "touch " << i;
-			// send event
+			// ofLog() << "touch " << i;
+			ofNotifyEvent(touched, i, this);
 		}
 		if(electrodes[i].diff < releaseThresholds[i] && touchStatus[i]){
 			touchStatus[i] = false;
-			ofLog() << "release " << i;
-			// send event
+			// ofLog() << "release " << i;
+			ofNotifyEvent(released, i, this);
 		}
 	}
 }

@@ -14,6 +14,8 @@ class ofxTouchBoard {
 	ofParameterGroup touchThresholdsParams;
 	ofParameterGroup releaseThresholdsParams;
 
+
+
 	vector<bool> touchStatus;
 	// vector<ofEvent> touchEvents;
 
@@ -55,7 +57,10 @@ class ofxTouchBoard {
 		const ofParameterGroup& getReleaseThresholdsParams(){
 			return releaseThresholdsParams;
 		}
-		
+	
+		ofEvent<int> touched;
+		ofEvent<int> released;
+	
 	private:
 		void drawGraphBar(float x0, float y0, int i, float val, float width, float xOffset);
 		void printDataLine(float val, float x, float y);
