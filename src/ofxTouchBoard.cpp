@@ -8,6 +8,27 @@ void ofxTouchBoard::setup(){
 	graphBarSpace = 10;
 	graphBarWidth = 20; 
 	jitter = 0.0;
+
+	setupThresholds();
+
+	touchStatus = vector<bool>(ELECTRODES_NB, false);
+}
+
+void ofxTouchBoard::setupThresholds(){
+	touchThresholds.resize(ELECTRODES_NB);
+	releaseThresholds.resize(ELECTRODES_NB);
+
+	for(int i = 0; i < ELECTRODES_NB; ++i){
+		ofParameter<float> t;
+		t.set("TTHS" + ofToString(i), 0.15625, 0.0, 1.0);
+		ofParameter<float> r;
+		r.set("RTHS" + ofToString(i), 0.078125, 0.0, 1.0);
+		touchThresholds[i] = t;
+		releaseThresholds[i] = r;
+	
+		touchThresholdsParams.add(touchThresholds[i]);
+		releaseThresholdsParams.add(releaseThresholds[i]);
+	}
 }
 
 void ofxTouchBoard::update(){
@@ -27,6 +48,22 @@ void ofxTouchBoard::update(){
 	}
 	else{
 		ofLog() << "electrodes.size() != rawData.size()";
+	}
+	updateStatus();
+}
+
+void ofxTouchBoard::updateStatus(){
+	for(int i = 0; i < touchStatus.size(); ++i){
+		if(electrodes[i].diff > touchThresholds[i] && !touchStatus[i]){
+			touchStatus[i] = true;
+			ofLog() << "touch " << i;
+			// send event
+		}
+		if(electrodes[i].diff < releaseThresholds[i] && touchStatus[i]){
+			touchStatus[i] = false;
+			ofLog() << "release " << i;
+			// send event
+		}
 	}
 }
 
