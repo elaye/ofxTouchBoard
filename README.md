@@ -38,7 +38,7 @@ update()
 Update the data received from the Touch Board, call this every frame.
 
 ```
-getTouchStatus(){
+getTouchStatus()
 ```
 Get a vector of boolean containing the touch status of each electrode of the Touch Board.
 
@@ -48,12 +48,12 @@ draw(float x, float y)
 Draw a bar graph with filtered data and baseline value.
 	
 ```
-ofEvent<int> touched;
+ofEvent<int> touched
 ```
 Touch event you can register to.
 
 ```
-ofEvent<int> released;
+ofEvent<int> released
 ```
 Release event you can register to.
 
@@ -90,12 +90,12 @@ getRawData()
 Get a vector of `ofxTB::Electrode` containing raw data.
 
 ```
-getTouchThresholds(){
+getTouchThresholds()
 ```
 Get a vector of `ofParameter<float>` corresponding to the touch thresholds of the addon.
 	
 ```
-getReleaseThresholds(){
+getReleaseThresholds()
 ```
 Get a vector of `ofParameter<float>` corresponding to the release thresholds of the addon.	
 
