@@ -5,7 +5,7 @@ ofxTouchBoard
 
 Introduction
 ------------
-This addon helps you receive data from the Bare Conductive's Touch Board in a simple and convenient way.
+This addon helps you receive data from the [Bare Conductive](http://www.bareconductive.com/)'s Touch Board in a simple and convenient way.
 
 License
 -------
