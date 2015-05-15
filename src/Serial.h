@@ -5,7 +5,6 @@
 #include "defs.h"
 
 class Serial : public ofThread {
-// class Serial {
 
 	ofSerial serial;
 
@@ -20,11 +19,7 @@ class Serial : public ofThread {
 		void setup();
 		void setup(int deviceId);
 		void threadedFunction();
-		// void update();
-		// void flush(){ serial.flush(); serial.drain(); }
 		int available(){ return serial.available(); }
-		
-		// void normalizeData();
 		void logData();
 
 		vector<ofxTB::Electrode> getData();
@@ -33,6 +28,5 @@ class Serial : public ofThread {
 	private:
 		void connect();
 		void init();
-		// void readData();
 		void readLine();
 };
