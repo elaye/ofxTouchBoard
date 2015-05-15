@@ -110,6 +110,25 @@ getReleaseThresholdsParams()
 Get an `ofParameterGroup` containing the release thresholds of the addon (easy to use with ofxGui).
 
 
+The `ofxTB::Electrode` structure is like this:
+
+```
+struct Electrode {
+	// Touch
+	bool touch;
+	// Touch threshold
+	float tths;
+	// Release threshold
+	float rths;
+	// Filtered data
+	float fdat;
+	// Baseline val
+	float bval;	
+	// Difference between 'bval' and 'fdat'
+	float diff;
+};
+```
+
 Dependencies
 ------------
 None for the addon. ofxGui for the examples.
