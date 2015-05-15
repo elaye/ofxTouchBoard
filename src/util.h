@@ -7,4 +7,4 @@ namespace ofxTB {
 		float e = pow(10.0, p);
 		return int(n * e) / e; 
 	}
-}
+};
