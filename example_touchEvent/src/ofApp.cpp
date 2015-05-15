@@ -14,6 +14,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	ofBackground(ofColor(20, 20, 20));
 	int n = ofxTB::ELECTRODES_NB;
 	float radius = 20.0;
 	float space = (ofGetWidth() - 2 * n * radius) / (n + 1);
@@ -35,6 +36,8 @@ void ofApp::touched(int& id){
 void ofApp::released(int& id){
 	ofLog() << "Electrode " << id << " released";
 }
+
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 
