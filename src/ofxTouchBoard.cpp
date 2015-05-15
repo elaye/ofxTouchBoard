@@ -2,23 +2,25 @@
 
 void ofxTouchBoard::setup(){
 	serial.setup();
-	electrodes.resize(ELECTRODES_NB);
+	electrodes.resize(ofxTB::ELECTRODES_NB);
 
 	graphHeight = 200;
 	graphBarSpace = 10;
 	graphBarWidth = 20; 
 	jitter = 0.0;
 
+	bBoardThresholds = true;
+
 	setupThresholds();
 
-	touchStatus = vector<bool>(ELECTRODES_NB, false);
+	touchStatus = vector<bool>(ofxTB::ELECTRODES_NB, false);
 }
 
 void ofxTouchBoard::setupThresholds(){
-	touchThresholds.resize(ELECTRODES_NB);
-	releaseThresholds.resize(ELECTRODES_NB);
+	touchThresholds.resize(ofxTB::ELECTRODES_NB);
+	releaseThresholds.resize(ofxTB::ELECTRODES_NB);
 
-	for(int i = 0; i < ELECTRODES_NB; ++i){
+	for(int i = 0; i < ofxTB::ELECTRODES_NB; ++i){
 		ofParameter<float> t;
 		t.set("TTHS" + ofToString(i), 0.15625, 0.0, 1.0);
 		ofParameter<float> r;
@@ -34,7 +36,7 @@ void ofxTouchBoard::setupThresholds(){
 void ofxTouchBoard::update(){
 	serial.update();
 
-	vector<Electrode> rawData(serial.getNormalizedData());
+	vector<ofxTB::Electrode> rawData(serial.getNormalizedData());
 
 	if(electrodes.size() == rawData.size()){
 		for(int i = 0; i < electrodes.size(); ++i){
@@ -54,17 +56,30 @@ void ofxTouchBoard::update(){
 
 void ofxTouchBoard::updateStatus(){
 	for(int i = 0; i < touchStatus.size(); ++i){
-		if(electrodes[i].diff > touchThresholds[i] && !touchStatus[i]){
+		bool touchEvent;
+		bool releaseEvent; 
+
+		if(bBoardThresholds){
+			touchEvent = electrodes[i].touch && !touchStatus[i];
+			releaseEvent = !electrodes[i].touch && touchStatus[i]; 
+		}
+		else{
+			touchEvent = electrodes[i].diff > touchThresholds[i] && !touchStatus[i];
+			releaseEvent = electrodes[i].diff < releaseThresholds[i] && touchStatus[i];
+		}
+
+		if(touchEvent){
 			touchStatus[i] = true;
 			// ofLog() << "touch " << i;
 			ofNotifyEvent(touched, i, this);
 		}
-		if(electrodes[i].diff < releaseThresholds[i] && touchStatus[i]){
+		if(releaseEvent){
 			touchStatus[i] = false;
 			// ofLog() << "release " << i;
 			ofNotifyEvent(released, i, this);
 		}
 	}
+
 }
 
 void ofxTouchBoard::logData(){
@@ -75,7 +90,7 @@ void ofxTouchBoard::logData(){
 
 void ofxTouchBoard::draw(float x, float y){
 	for(int i = 0; i < electrodes.size(); ++i){
-		Electrode e(electrodes[i]);
+		ofxTB::Electrode e(electrodes[i]);
 
 		// ofSetColor(ofColor(147, 147, 147, 100));
 		// if(e.touch){
@@ -155,7 +170,7 @@ void ofxTouchBoard::printData(float x, float y){
 }
 
 void ofxTouchBoard::printRawData(float x, float y){
-	vector<Electrode> raw(serial.getData());
+	vector<ofxTB::Electrode> raw(serial.getData());
 	float charWidth = 11;
 	float charHeight = 15;
 	float xOffset = x;

@@ -8,8 +8,8 @@
 class Serial {
 
 	ofSerial serial;
-	vector<Electrode> data;
-	vector<Electrode> normalizedData;
+	vector<ofxTB::Electrode> data;
+	vector<ofxTB::Electrode> normalizedData;
 	int deviceNb;
 	int baudRate;
 	bool bConnected;
@@ -27,7 +27,7 @@ class Serial {
 		// void normalizeData();
 		void logData();
 
-		vector<Electrode> getData();
-		vector<Electrode> getNormalizedData();
+		vector<ofxTB::Electrode> getData();
+		vector<ofxTB::Electrode> getNormalizedData();
 		
 };

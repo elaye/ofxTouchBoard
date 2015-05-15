@@ -2,8 +2,8 @@
 
 void Serial::setup(){
 	// lock();
-		data.resize(ELECTRODES_NB);
-		normalizedData.resize(ELECTRODES_NB);
+		data.resize(ofxTB::ELECTRODES_NB);
+		normalizedData.resize(ofxTB::ELECTRODES_NB);
 	// unlock();
 	// serial.setup("/dev/ttyACM0", 57600);
 	serial.listDevices();
@@ -38,16 +38,16 @@ void Serial::update(){
 	readData();
 }
 
-vector<Electrode> Serial::getData(){
+vector<ofxTB::Electrode> Serial::getData(){
 	return data;
 }
 
-vector<Electrode> Serial::getNormalizedData(){
+vector<ofxTB::Electrode> Serial::getNormalizedData(){
 	// lock();
 		copy(data.begin(), data.end(), normalizedData.begin());
 		float tenBits = 1024.0;
 		float eightBits = 256.0;
-		for(vector<Electrode>::iterator d = normalizedData.begin(); d != normalizedData.end(); ++d){
+		for(vector<ofxTB::Electrode>::iterator d = normalizedData.begin(); d != normalizedData.end(); ++d){
 			d->tths = float(d->tths) / eightBits;
 			d->rths = float(d->rths) / eightBits;
 			d->fdat = float(d->fdat) / tenBits;
@@ -65,7 +65,7 @@ void Serial::readData(){
 	// 		readSerialLine();
 	// 	}
 	// }
-	for(int i = 0; i < DATA_NB_LINE; ++i){
+	for(int i = 0; i < ofxTB::DATA_NB_LINE; ++i){
 		// 128 > max nb of characters in a line
 		// while(serial.available() > 128){
 			readLine();
@@ -159,7 +159,7 @@ void Serial::logData(){
 			<< left << setw(5) << "DIFF" << endl;
 
 	for(int i = 0; i < data.size(); ++i){
-		Electrode e(data[i]);
+		ofxTB::Electrode e(data[i]);
 		cout << left << setw(1) << "E"
 				<< left << setw(3) << i
 				<< left << setw(6) << e.touch
