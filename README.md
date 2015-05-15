@@ -16,6 +16,11 @@ Installation
 Just drop the folder into the `openFrameworks/addons/` folder.
 To receive data from your Touch Board you need to upload the [`DataStream`](https://github.com/BareConductive/mpr121/tree/public/MPR121/Examples/DataStream) program on it.
 
+Usage
+-----
+
+See the examples.
+
 Dependencies
 ------------
 None
