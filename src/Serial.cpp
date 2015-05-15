@@ -2,8 +2,7 @@
 
 void Serial::setup(){
 	// lock();
-		data.resize(ofxTB::ELECTRODES_NB);
-		normalizedData.resize(ofxTB::ELECTRODES_NB);
+
 	// unlock();
 	// serial.setup("/dev/ttyACM0", 57600);
 	serial.listDevices();
@@ -11,7 +10,18 @@ void Serial::setup(){
 	deviceNb = -1;
 	cout << "Please choose a device: ";
 	cin >> deviceNb;
+	init();
+}
 
+void Serial::setup(int deviceId){
+	deviceNb = deviceId;
+	init();
+}
+
+void Serial::init(){
+	data.resize(ofxTB::ELECTRODES_NB);
+	normalizedData.resize(ofxTB::ELECTRODES_NB);
+	
 	baudRate = 57600;
 	bConnected = false;
 	connect();
@@ -25,17 +35,11 @@ void Serial::connect(){
 		connect();
 	}
 }
-// void Serial::threadedFunction(){
-// 	while(isThreadRunning()){
-// 		readData();
-// 		// normalizeData();
-// 	}
-// }
 
-
-
-void Serial::update(){
-	readData();
+void Serial::threadedFunction(){
+	while(isThreadRunning()){
+		readLine();
+	}
 }
 
 vector<ofxTB::Electrode> Serial::getData(){
@@ -58,20 +62,20 @@ vector<ofxTB::Electrode> Serial::getNormalizedData(){
 	return normalizedData;
 }
 
-void Serial::readData(){
-	// for(int i = 0; i < DATA_NB_LINE; ++i){
-	// 	// 128 > max nb of characters in a line
-	// 	if(serial.available() > 56){
-	// 		readSerialLine();
-	// 	}
-	// }
-	for(int i = 0; i < ofxTB::DATA_NB_LINE; ++i){
-		// 128 > max nb of characters in a line
-		// while(serial.available() > 128){
-			readLine();
-		// }
-	}
-}
+// void Serial::readData(){
+// 	// for(int i = 0; i < DATA_NB_LINE; ++i){
+// 	// 	// 128 > max nb of characters in a line
+// 	// 	if(serial.available() > 56){
+// 	// 		readSerialLine();
+// 	// 	}
+// 	// }
+// 	for(int i = 0; i < ofxTB::DATA_NB_LINE; ++i){
+// 		// 128 > max nb of characters in a line
+// 		// while(serial.available() > 128){
+// 			readLine();
+// 		// }
+// 	}
+// }
 
 void Serial::readLine(){
 	stringstream ss;
@@ -124,7 +128,7 @@ void Serial::readLine(){
 						data[i].diff = val;
 					}
 					else{
-						ofLogError() << "Unrecognized key: " << dataKey; 
+						// ofLogError() << "Unrecognized key: " << dataKey; 
 					}
 				}
 			}
@@ -133,20 +137,6 @@ void Serial::readLine(){
 	}
 	// ofLog() << raw.str();
 }
-
-// void Serial::normalizeData(){
-// 	// 10-bit (see MPR121 documentation)
-// 	float tenBits = 1024.0;
-// 	lock();
-// 		for(auto& e : data){
-// 			e.tths = float(e.tths) / tenBits;
-// 			e.rths = float(e.rths) / tenBits;
-// 			e.fdat = float(e.fdat) / tenBits;
-// 			e.bval = float(e.bval) / tenBits;
-// 			e.diff = float(e.diff) / tenBits;
-// 		}
-// 	unlock();
-// }
 
 void Serial::logData(){
 	// lock();

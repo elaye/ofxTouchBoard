@@ -4,30 +4,35 @@
 
 #include "defs.h"
 
-// class Serial : public ofThread {
-class Serial {
+class Serial : public ofThread {
+// class Serial {
 
 	ofSerial serial;
+
 	vector<ofxTB::Electrode> data;
 	vector<ofxTB::Electrode> normalizedData;
+
 	int deviceNb;
 	int baudRate;
 	bool bConnected;
 
 	public:
 		void setup();
-		void connect();
-		// void threadedFunction();
-		void update();
-		void flush(){ serial.flush(); serial.drain(); }
+		void setup(int deviceId);
+		void threadedFunction();
+		// void update();
+		// void flush(){ serial.flush(); serial.drain(); }
 		int available(){ return serial.available(); }
 		
-		void readData();
-		void readLine();
 		// void normalizeData();
 		void logData();
 
 		vector<ofxTB::Electrode> getData();
 		vector<ofxTB::Electrode> getNormalizedData();
 		
+	private:
+		void connect();
+		void init();
+		// void readData();
+		void readLine();
 };

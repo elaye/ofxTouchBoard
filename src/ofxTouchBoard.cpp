@@ -1,7 +1,18 @@
 #include "ofxTouchBoard.h"
 
+void ofxTouchBoard::setup(int deviceId){
+	serial.setup(deviceId);
+	init();
+}
+
 void ofxTouchBoard::setup(){
 	serial.setup();
+	init();
+}
+
+void ofxTouchBoard::init(){
+	ofAddListener(ofEvents().exit, this, &ofxTouchBoard::exit);
+	serial.startThread(false);
 	electrodes.resize(ofxTB::ELECTRODES_NB);
 
 	graphHeight = 200;
@@ -34,10 +45,10 @@ void ofxTouchBoard::setupThresholds(){
 }
 
 void ofxTouchBoard::update(){
-	serial.update();
-
-	vector<ofxTB::Electrode> rawData(serial.getNormalizedData());
-
+	serial.lock();
+		vector<ofxTB::Electrode> rawData(serial.getNormalizedData());
+	serial.unlock();
+	
 	if(electrodes.size() == rawData.size()){
 		for(int i = 0; i < electrodes.size(); ++i){
 			electrodes[i].touch = rawData[i].touch;
@@ -86,8 +97,6 @@ void ofxTouchBoard::logData(){
 	serial.logData();
 }
 
-
-
 void ofxTouchBoard::draw(float x, float y){
 	for(int i = 0; i < electrodes.size(); ++i){
 		ofxTB::Electrode e(electrodes[i]);
@@ -129,48 +138,18 @@ void ofxTouchBoard::drawGraphBar(float x0, float y0, int i, float val, float wid
 }
 
 void ofxTouchBoard::printData(float x, float y){
-	float charWidth = 11;
-	float charHeight = 15;
-	float xOffset = x;
-	float yOffset = y + charHeight;
-	float colWidth = 30;
-	float rowHeight = 20;
-	ofDrawBitmapString("E", x, yOffset);
-	xOffset += 2 * charWidth;
-	ofDrawBitmapString("TOUCH", xOffset, yOffset);
-	xOffset += 5 * charWidth;
-	ofDrawBitmapString("TTHS", xOffset, yOffset);
-	xOffset += 4 * charWidth;
-	ofDrawBitmapString("RTHS", xOffset, yOffset);
-	xOffset += 4 * charWidth;
-	ofDrawBitmapString("FDAT", xOffset, yOffset);
-	xOffset += 4 * charWidth;
-	ofDrawBitmapString("BVAL", xOffset, yOffset);
-	xOffset += 4 * charWidth;
-	ofDrawBitmapString("DIFF", xOffset, yOffset);
-	yOffset += charHeight;
-
-	for(int i = 0; i < electrodes.size(); ++i){
-		xOffset = x;
-		printDataLine(i, xOffset, yOffset);
-		xOffset += 2 * charWidth;
-		printDataLine(electrodes[i].touch, xOffset, yOffset);
-		xOffset += 5 * charWidth;
-		printDataLine(electrodes[i].tths, xOffset, yOffset);
-		xOffset += 4 * charWidth;
-		printDataLine(electrodes[i].rths, xOffset, yOffset);
-		xOffset += 4 * charWidth;
-		printDataLine(electrodes[i].fdat, xOffset, yOffset);
-		xOffset += 4 * charWidth;
-		printDataLine(electrodes[i].bval, xOffset, yOffset);
-		xOffset += 4 * charWidth;
-		printDataLine(electrodes[i].diff, xOffset, yOffset);
-		yOffset += charHeight;
-	}
+	printData(electrodes, x, y);
 }
 
 void ofxTouchBoard::printRawData(float x, float y){
-	vector<ofxTB::Electrode> raw(serial.getData());
+	serial.lock();
+		vector<ofxTB::Electrode> raw(serial.getData());
+	serial.unlock();
+	
+	printData(raw, x, y);
+}
+
+void ofxTouchBoard::printData(vector<ofxTB::Electrode>& e, float x, float y){
 	float charWidth = 11;
 	float charHeight = 15;
 	float xOffset = x;
@@ -192,21 +171,21 @@ void ofxTouchBoard::printRawData(float x, float y){
 	ofDrawBitmapString("DIFF", xOffset, yOffset);
 	yOffset += charHeight;
 
-	for(int i = 0; i < raw.size(); ++i){
+	for(int i = 0; i < e.size(); ++i){
 		xOffset = x;
 		printDataLine(i, xOffset, yOffset);
 		xOffset += 2 * charWidth;
-		printDataLine(raw[i].touch, xOffset, yOffset);
+		printDataLine(e[i].touch, xOffset, yOffset);
 		xOffset += 5 * charWidth;
-		printDataLine(raw[i].tths, xOffset, yOffset);
+		printDataLine(e[i].tths, xOffset, yOffset);
 		xOffset += 4 * charWidth;
-		printDataLine(raw[i].rths, xOffset, yOffset);
+		printDataLine(e[i].rths, xOffset, yOffset);
 		xOffset += 4 * charWidth;
-		printDataLine(raw[i].fdat, xOffset, yOffset);
+		printDataLine(e[i].fdat, xOffset, yOffset);
 		xOffset += 4 * charWidth;
-		printDataLine(raw[i].bval, xOffset, yOffset);
+		printDataLine(e[i].bval, xOffset, yOffset);
 		xOffset += 4 * charWidth;
-		printDataLine(raw[i].diff, xOffset, yOffset);
+		printDataLine(e[i].diff, xOffset, yOffset);
 		yOffset += charHeight;
 	}
 }
@@ -217,6 +196,10 @@ void ofxTouchBoard::printDataLine(float val, float x, float y){
 
 void ofxTouchBoard::printDataLine(int val, float x, float y){
 	ofDrawBitmapString(ofToString(val), x, y);
+}
+
+void ofxTouchBoard::exit(ofEventArgs& e){
+	serial.waitForThread();
 }
 
 

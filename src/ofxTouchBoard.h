@@ -17,17 +17,15 @@ class ofxTouchBoard {
 	bool bBoardThresholds;
 
 	vector<bool> touchStatus;
-	// vector<ofEvent> touchEvents;
 
 	float graphHeight, graphBarWidth, graphBarSpace;
 	float jitter;
 
 	public:
 		void setup();
-		void setupThresholds();
+		void setup(int deviceId);
 
 		void update();
-		void updateStatus();
 
 		void logData();
 
@@ -70,7 +68,12 @@ class ofxTouchBoard {
 		ofEvent<int> released;
 	
 	private:
+		void init();
+		void setupThresholds();
+		void updateStatus();
 		void drawGraphBar(float x0, float y0, int i, float val, float width, float xOffset);
+		void printData(vector<ofxTB::Electrode>& e, float x, float y);
 		void printDataLine(float val, float x, float y);
 		void printDataLine(int val, float x, float y);
+		void exit(ofEventArgs& e);
 };
