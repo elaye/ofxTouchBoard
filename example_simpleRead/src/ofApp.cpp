@@ -9,7 +9,7 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-	ofBackgroundGradient(ofColor(40,40,40), ofColor(0,0,0), OF_GRADIENT_CIRCULAR);	
+	ofBackground(ofColor(20));	
 
 	ofSetColor(ofColor::white);
 	

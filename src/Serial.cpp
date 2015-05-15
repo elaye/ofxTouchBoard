@@ -74,36 +74,36 @@ void Serial::readLine(){
 	if(ss >> dataKey){
 		int j = 0;
 		int val;
-			for(int i = 0; i < data.size(); ++i){
-				if(ss >> val){
-					if(dataKey == "TOUCH:"){
-						if(val == 1){
-							data[i].touch = true;				
-						}
-						else{
-							data[i].touch = false;				
-						}
-					}
-					else if(dataKey == "TTHS:"){
-						data[i].tths = val;
-					}
-					else if(dataKey == "RTHS:"){
-						data[i].rths = val;
-					}
-					else if(dataKey == "FDAT:"){
-						data[i].fdat = val;						
-					}
-					else if(dataKey == "BVAL:"){
-						data[i].bval = val;
-					}
-					else if(dataKey == "DIFF:"){
-						data[i].diff = val;
+		for(int i = 0; i < data.size(); ++i){
+			if(ss >> val){
+				if(dataKey == "TOUCH:"){
+					if(val == 1){
+						data[i].touch = true;				
 					}
 					else{
-						// ofLogError() << "Unrecognized key: " << dataKey; 
+						data[i].touch = false;				
 					}
 				}
+				else if(dataKey == "TTHS:"){
+					data[i].tths = val;
+				}
+				else if(dataKey == "RTHS:"){
+					data[i].rths = val;
+				}
+				else if(dataKey == "FDAT:"){
+					data[i].fdat = val;						
+				}
+				else if(dataKey == "BVAL:"){
+					data[i].bval = val;
+				}
+				else if(dataKey == "DIFF:"){
+					data[i].diff = val;
+				}
+				else{
+					// ofLogError() << "Unrecognized key: " << dataKey; 
+				}
 			}
+		}
 	}
 }
 

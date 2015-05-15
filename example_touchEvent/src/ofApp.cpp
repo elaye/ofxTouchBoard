@@ -2,6 +2,7 @@
 
 void ofApp::setup(){
 	touchBoard.setup();
+
 	ofAddListener(touchBoard.touched, this, &ofApp::touched);
 	ofAddListener(touchBoard.released, this, &ofApp::released);
 }
@@ -11,7 +12,7 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-	ofBackground(ofColor(20, 20, 20));
+	ofBackground(ofColor(20));
 
 	int n = ofxTB::ELECTRODES_NB;
 	float radius = 20.0;
