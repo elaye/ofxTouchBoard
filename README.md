@@ -137,6 +137,10 @@ Compatibility
 ------------
 This addon works with oF 0.8.4 on Linux and Mac OS X.
 
+Contributing
+------------
+You found a bug or want to improve this addon? Please, open an issue!
+
 Known issues
 ------------
 Don't setup your boards with `setup()` when using multiple boards, use `setup(int deviceId)` instead. 
