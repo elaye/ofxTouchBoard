@@ -202,5 +202,37 @@ void ofxTouchBoard::exit(ofEventArgs& e){
 	serial.waitForThread();
 }
 
+void ofxTouchBoard::useBoardThresholds(bool b){
+    bBoardThresholds = b;
+}
+
+const vector<ofxTB::Electrode>& ofxTouchBoard::getData(){
+    return electrodes;
+}
+
+const vector<ofxTB::Electrode>& ofxTouchBoard::getRawData(){
+    return serial.getData();
+}
+
+const vector<ofParameter<float> >& ofxTouchBoard::getTouchThresholds(){
+    return touchThresholds;
+}
+
+const vector<ofParameter<float> >& ofxTouchBoard::getReleaseThresholds(){
+    return releaseThresholds;
+}
+
+const ofParameterGroup& ofxTouchBoard::getTouchThresholdsParams(){
+    return touchThresholdsParams;
+}
+
+const ofParameterGroup& ofxTouchBoard::getReleaseThresholdsParams(){
+    return releaseThresholdsParams;
+}
+
+const vector<bool>& ofxTouchBoard::getTouchStatus(){
+    return touchStatus;
+}
+
 
 
