@@ -38,6 +38,11 @@ void Serial::threadedFunction(){
 	}
 }
 
+int Serial::available(){
+    return serial.available();
+}
+
+
 vector<ofxTB::Electrode> Serial::getData(){
 	return data;
 }

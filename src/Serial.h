@@ -19,7 +19,7 @@ class Serial : public ofThread {
 		void setup();
 		void setup(int deviceId);
 		void threadedFunction();
-		int available(){ return serial.available(); }
+        int available();
 		void logData();
 
 		vector<ofxTB::Electrode> getData();

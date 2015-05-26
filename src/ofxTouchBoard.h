@@ -34,35 +34,21 @@ class ofxTouchBoard {
 		
 		void draw(float x, float y);
 
-		void useBoardThresholds(bool b){ bBoardThresholds = b; }
+        void useBoardThresholds(bool b);
 
-		const vector<ofxTB::Electrode>& getData(){
-			return electrodes;
-		}
+        const vector<ofxTB::Electrode>& getData();
 	
-		const vector<ofxTB::Electrode>& getRawData(){
-			return serial.getData();
-		}
+        const vector<ofxTB::Electrode>& getRawData();
 
-		const vector<ofParameter<float> >& getTouchThresholds(){
-			return touchThresholds;
-		}
+        const vector<ofParameter<float> >& getTouchThresholds();
 
-		const vector<ofParameter<float> >& getReleaseThresholds(){
-			return releaseThresholds;
-		}		
+        const vector<ofParameter<float> >& getReleaseThresholds();
 
-		const ofParameterGroup& getTouchThresholdsParams(){
-			return touchThresholdsParams;
-		}
+        const ofParameterGroup& getTouchThresholdsParams();
 
-		const ofParameterGroup& getReleaseThresholdsParams(){
-			return releaseThresholdsParams;
-		}
+        const ofParameterGroup& getReleaseThresholdsParams();
 
-		const vector<bool>& getTouchStatus(){
-			return touchStatus;
-		}
+        const vector<bool>& getTouchStatus();
 	
 		ofEvent<int> touched;
 		ofEvent<int> released;
