@@ -135,7 +135,7 @@ None for the addon. ofxGui for the examples.
 
 Compatibility
 ------------
-This addon works with oF 0.8.4 on Linux and Mac OS X.
+This addon works with oF 0.8.4 on Linux, Mac OS X and Raspberry Pi (v1 and v2).
 
 Contributing
 ------------
