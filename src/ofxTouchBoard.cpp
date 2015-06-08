@@ -101,33 +101,13 @@ void ofxTouchBoard::draw(float x, float y){
 	for(int i = 0; i < electrodes.size(); ++i){
 		ofxTB::Electrode e(electrodes[i]);
 
-		// ofSetColor(ofColor(147, 147, 147, 100));
-		// if(e.touch){
-			ofSetColor(ofColor(35, 255, 106, 100));
-		// }
-		// else{
-			// ofSetColor(ofColor(147, 147, 147, 100));
-		// }
 		// Draw filter data graph bar
+		ofSetColor(ofColor(35, 255, 106, 100));
 		drawGraphBar(x, y, i, e.fdat, graphBarWidth/2.0, -graphBarWidth/4.0);	
 		// Draw base value graph bar
 		ofSetColor(ofColor(35, 106, 255, 100));
 		drawGraphBar(x, y, i, e.bval, graphBarWidth/2.0, graphBarWidth/4.0);
-		// Draw touch threshold graph bar
-		// drawGraphBar(i, e.tths, graphBarWidth);
 
-		// Draw diff graph bar
-		// if(e.touch){
-		// 	ofSetColor(ofColor(35, 255, 106));
-		// }
-		// else{
-		// 	ofSetColor(ofColor(35, 106, 255));
-		// }
-		// drawGraphBar(i, e.diff, graphBarWidth);
-
-		// Draw release threshold graph bar
-		// ofSetColor(ofColor(147, 147, 147, 100));
-		// drawGraphBar(i, e.rths, graphBarWidth);
 	}
 }
 
